@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wish From 4215</title>
+    <link href="img/favicon.png" rel="icon" type="img/png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<style>
+    body{
+        font-family: 'Pacifico', cursive;
+        background:conic-gradient(wheat,white);
+        height: 100vh;
+    }
+
+    .goback{
+        background:rgba(221, 163, 227,0.5);
+
+        height: 25px;
+    }
+
+    .goback a{
+        text-decoration: none;
+        color: goldenrod;
+        font-size: 20px;
+
+    }
+
+    .goback .controls{
+        position: absolute;
+        left: 90%;
+        top: 0;
+    }
+
+    .controls .action-btn{
+        color: #ffffff;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 3;
+
+        background: transparent;
+        border: 0;
+        margin: 5px 2px;
+    }
+
+    .controls.play .action-btn{
+        color: antiquewhite;
+    }
+
+    .card{
+        width: 800px;
+        height: 600px;
+
+        background: conic-gradient(gold,wheat);
+        box-shadow: 10px 15px 10px rgba(0,0,0,0.7);
+
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%,-90%);
+    }
+
+    .container{
+        width: 300px;
+        height: 400px;
+        background: #fff;
+        perspective: 2000px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+
+        position: absolute;
+        left: 60%;
+        top: 20%;
+    }
+
+    .container::before{
+        content: "";
+        width: 230px;
+        height: 350px;
+        /*background: tomato;*/
+        border: 3px solid gold;
+
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        bottom: 20px;
+    }
+
+    .container::after{
+        content: "";
+        width: 20px;
+        height: 100%;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+
+        background: black;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .flower .black{
+        width: 200px;
+        height: 50px;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+
+        transform: translate(-50%,-20px);
+    }
+
+    .flower .frame{
+        width: 100px;
+        height: 100px;
+        /*opacity: 0.5;*/
+        position: absolute;
+        top: 0;
+        right: 30px;
+    }
+
+    .flower .click{
+        color: goldenrod;
+        border:2px solid goldenrod;
+        font-size: 20px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        cursor: pointer;
+
+    }
+
+    .img{
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 20px;
+
+        /*transition: all 0.5s;*/
+        transform-origin: left;
+        transform-style: preserve-3d;
+
+
+    }
+
+    .img .welcome{
+        color: goldenrod;
+        font-size: 20px;
+        letter-spacing: 3px;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%,-10%);
+        z-index: 2;
+    }
+
+    .img-front,.img-back{
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+
+        backface-visibility: hidden;
+        overflow: hidden;
+
+    }
+
+
+    .img-front .cover{
+        width: 265px;
+        height: 100%;
+        background: black;
+
+        position: absolute;
+        top:0;
+        left: 20px;
+
+        overflow: hidden;
+
+    }
+
+    .img-front ul{
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+    }
+
+    .img-front ul li{
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: yellow;
+        border-radius: 50%;
+        margin:2px 5px;
+
+        position: absolute;
+
+        animation-name: myani;
+        animation-duration: 60s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-direction: alternate;
+
+    }
+
+    ul li:nth-of-type(1){
+        top:0;
+        left: 0;
+        animation-delay: 7.5s;
+    }
+
+    ul li:nth-of-type(2){
+        top: 50%;
+        left: 50%;
+    }
+
+    ul li:nth-of-type(3){
+        bottom: 30%;
+        left: 20%;
+        animation-delay: 35s;
+    }
+
+    ul li:nth-of-type(4){
+        bottom: 80%;
+        right: 23%;
+        animation-delay: 3.5s;
+    }
+
+    ul li:nth-of-type(5){
+        right: 60%;
+        bottom: 2%;
+        animation-delay: 0.7s;
+    }
+
+    ul li:nth-of-type(6){
+        top: 75%;
+        left: 90%;
+        animation-delay: 5s;
+    }
+
+    ul li:nth-of-type(7){
+        right: 0;
+        top: 0;
+        animation-delay: 7s;
+    }
+
+    ul li:nth-of-type(8){
+        right: 35%;
+        bottom: 2%;
+        animation-delay: 2.3s;
+    }
+
+    ul li:nth-of-type(9){
+        left: 25%;
+        top:72%;
+        animation-delay: 3.1s;
+    }
+
+    ul li:nth-of-type(10){
+        left: 12%;
+        top: 51%;
+        animation-delay: 4.1s;
+    }
+
+    ul li:nth-of-type(11){
+        left: 81%;
+        bottom: 63%;
+        animation-delay: 15s;
+    }
+
+    ul li:nth-of-type(12){
+        top: 10%;
+        right: 60%;
+        animation-delay: 6s;
+    }
+
+
+
+    .img-back{
+        background: darkgoldenrod;
+        opacity: 1;
+
+        transform: rotateY(180deg);
+    }
+
+    .container:hover .img{
+        transform: rotateY(-130deg);
+    }
+
+
+    .balloons{
+        width: 300px;
+        height: 350px;
+        /*background: #fff;*/
+
+        position: absolute;
+        top: 40%;
+        left: 0;
+
+        overflow: hidden;
+
+        animation-name: thai;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+    }
+
+    .balloons::before{
+        content: "Balloons";
+        width: 100px;
+        height: 20px;
+
+        text-align: center;
+
+        background: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        z-index: 2;
+
+        transform: translate(-110%);
+    }
+
+    .balloonone,.balloontwo,.balloonthree,.balloonfour,.balloonfive{
+        width: 60px;
+        height: 85px;
+        border-radius: 50%;
+        background: tomato;
+
+        position: absolute;
+        top:35%;
+        left: 2px;
+
+
+    }
+
+    .balloonone{
+        transform: rotate(-15deg);
+    }
+
+    .balloontwo{
+        top:28%;
+        left: 40px;
+        background: rgba(212, 168, 49,0.7);
+
+        transform: rotate(-5deg);
+    }
+
+    .balloonthree{
+        top:35%;
+        left: 90px;
+
+        transform: rotate(10deg);
+        background: rgba(77, 122, 219,0.9);
+
+    }
+
+    .balloonfour{
+        top: 20%;
+        left: 150px;
+
+        transform: rotate(20deg);
+        background: rgba(19, 97, 47,0.7);
+    }
+
+    .balloonfive{
+        top: 18%;
+        left: 120px;
+
+        background: rgba(230, 94, 242,0.8);
+        transform: rotate(14deg);
+    }
+
+    .balloonone::before,.balloontwo::before,.balloonthree::before,.balloonfour::before,.balloonfive::before{
+        content: "";
+        width: 2px;
+        height: 230px;
+        background: darkblue;
+        top: 85px;
+        left: 30px;
+
+        position: absolute;
+    }
+
+
+
+
+    @keyframes myani {
+        0%{
+            transform: translate(-100%,30%);
+        }
+        20%{
+            transform: translate(100%,-30%) scale(1.2);
+            background: blue;
+        }
+
+        30%{
+            transform: translateY(-20%) scale(0.7);
+            background: violet;
+        }
+        45%{
+            transform: scale(3) translate(-100%,100%);
+            background: tomato;
+        }
+        55%{
+            transform: scale(0.3) translate(-40%,-80%);
+            background: deepskyblue;
+        }
+        100%{
+            transform: scale(1.5) translate(50%,40%);
+            background: black;
+        }
+    }
+
+
+
+    @keyframes thai {
+        0%{
+            transform: rotate(-5deg);
+        }
+        100%{
+            transform: rotate(5deg);
+        }
+    }
+
+    body.show b{
+        position: absolute;
+        background: #ff2a2a;
+        border-radius: 100%;
+
+        animation: animate 5s linear infinite;
+
+        z-index: -1;
+
+        /*display: none;*/
+    }
+
+
+
+    body b:nth-child(even){
+        background: transparent;
+        border: 1px solid #ff2a2a;
+    }
+
+    @keyframes animate {
+        0%{
+            transform: translateY(0);
+            opacity: 0;
+        }
+        10%{
+            opacity: 1;
+        }
+        90%{
+            opacity: 1;
+        }
+        100%{
+            transform: translateY(-2000%);
+            opacity: 0;
+        }
+    }
+
+    /*For Modal*/
+.modal-container{
+    background: rgba(0,0,0,0.7);
+
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: none;
+}
+
+.modal-container.showmodal{
+    display: block;
+}
+
+.modal-container .close{
+    background: transparent;
+    color: springgreen;
+    border:0;
+    cursor: pointer;
+
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+
+.modal{
+    width: 700px;
+    height: 300px;
+    background: rgba(51, 163, 81,0.8);
+    box-shadow: 0px 15px 10px rgba(156, 230, 177,0.3);
+    border-radius: 30px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.modal p{
+    color: goldenrod;
+    font-size: 23px;
+    text-align: center;
+}
+
+</style>
+<body >
+<div class="goback"><a href="#">Go back</a>
+<div  id="controls" class="controls">
+    <button id="song" class="action-btn"><i class="fa fa-music"></i></button>
+    <button id="play" class="action-btn"><i class="fas fa-play"></i></button>
+</div>
+</div>
+<audio id="music" src="song.mp3"></audio>
+<div class="card">
+<div class="container">
+    <div class="flower">
+        <img src="img/blackflower.png" class="black" alt="vain" />
+        <img src="img/frame.jpg" class="frame" alt="frame" />
+        <button id="click" class="click"><i class="far fa-envelope-open"></i></button>
+    </div>
+    <div class="img">
+        <div class="img-front">
+            <div class="cover">
+                <p class="welcome">
+                    A Little Wish
+                </p>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="img-back">
+        </div>
+    </div>
+</div>
+<div class="balloons">
+    <div class="balloonone"></div>
+    <div class="balloontwo"></div>
+    <div class="balloonthree"></div>
+    <div class="balloonfour"></div>
+    <div class="balloonfive"></div>
+</div>
+</div>
+
+<!--Start Modal-->
+<div id="modal" class="modal-container">
+    <div class="modal">
+        <button id="close" class="close" ><i class="far fa-heart"></i></button>
+        <div class="details">
+            <p>First of all,I would like to thank you,Sayar.
+            Although I chose IT major at the university,I didn't know whether I  was interested or not.
+            But after I met you,I found interest in coding.It's really a big pleasure to meet you.
+            HAPPY BIRTHDAY to you and wish you all the best for many years to come.
+            I also want to promise you that I will try my best.
+            Thank you Sayar.</p>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+<script>
+    const control= document.getElementById('controls');
+    const playbtn=document.getElementById('play');
+    const audio=document.getElementById('music');
+    const clickbtn = document.getElementById('click');
+    const modal = document.getElementById('modal');
+    const closebtn = document.getElementById('close');
+    var b, bubble ;
+    var card = document.querySelector('body');
+
+
+
+    playbtn.addEventListener('click',()=>{
+          const isplaying = control.classList.contains('play');
+
+          if(isplaying){
+              pausesong();
+          }else {
+              playsong();
+              bubbles();
+          }
+    })
+
+    function playsong(){
+         control.classList.add('play');
+        playbtn.querySelector('i.fas').classList.remove('fa-play');
+         playbtn.querySelector('i.fas').classList.add('fa-pause');
+
+         audio.play();
+    }
+
+    function  pausesong(){
+        control.classList.remove('play');
+
+        playbtn.querySelector('i.fas').classList.remove('fa-pause');
+        playbtn.querySelector('i.fas').classList.add('fa-play');
+
+        audio.pause();
+    }
+
+    function  bubbles(){
+        document.body.classList.add('show');
+        var count =200;
+        // var card = document.querySelector('body');
+        b =0;
+        while(b<count){
+             bubble = document.createElement('b');
+            var x=Math.floor(Math.random() * window.innerWidth);
+            var y =Math.floor(Math.random() * window.innerHeight);
+
+            var size = Math.random() *10;
+            bubble.style.left = x+'px';
+            bubble.style.top = y+'px';
+            bubble.style.width = 1+size+'px';
+            bubble.style.height =1+size+'px';
+
+            card.appendChild(bubble);
+            b++;
+        }
+    }
+
+    clickbtn.addEventListener('click',()=>{
+         modal.classList.add('showmodal');
+    });
+
+    closebtn.addEventListener('click',()=>{
+        modal.classList.remove('showmodal');
+    });
+
+    window.addEventListener('click',(e)=> e.target === modal ? modal.classList.remove('showmodal') : false );
+
+</script>
+</body>
+</html>
